@@ -10,7 +10,7 @@ MotorCar Trend magazine are interested in exploring the relationship between a s
 1. “Is an automatic or manual transmission better for MPG”
 Result: Analysis clearly shows that manual transmission provides better mpg. 
 2. "Quantify the MPG difference between automatic and manual transmissions"
-Result: Manual transmission vehicles on an average gives 7.425 more miles/gallon as compared to automatic transmission
+Result: Manual transmission vehicle on an average gives 7.425 more miles/gallon as compared to automatic transmission
 
 ```{r}
 
@@ -54,14 +54,15 @@ Performing anova on the all the models clearly showed that including all the var
 
 ```{r}
 modelMpgAll<-lm(mpg ~ ., data = mtcars)
-summary(modelMpgAll)
-
 modelMpgAll2<-lm(mpg ~ cyl + disp + hp + drat + wt + qsec + vs + gear + carb, data = mtcars)
-summary(modelMpgAll2)
 anova(modelMpgAm, modelMpgAll, modelMpgAll2)
 ```
-__Appendix:__
 
+
+
+
+
+__Appendix:__
 __Figure1:__ Boxplot showing differences in mpg (yaxis) as a factor of transmission(x-asis)
 You can also embed plots, for example:
 
@@ -71,17 +72,19 @@ plotMpgAm
 ```
 
 __Figure 2:__ Plot presenting the relationship between residuals (only transmission) and the transmission.
+
 ```{r echo = FALSE}
 g = ggplot(data.frame(mtcars), aes(x = mpg, y = resid(modelMpgAm)))
 g = g + geom_hline(yintercept = 0, size = 2); 
 g = g + geom_point(size = 5, colour = "black", alpha = 0.2)
 g = g + geom_point(size = 5, colour = "red", alpha = 0.2)
-g = g + xlab("X") + ylab("Residual")
+g = g + xlab("X") + ylab("Residual") + theme_bw()
 g
 
 ```
 
 __Figure3:__ Correlation plots of all variables.
+
 ```{r echo = FALSE}
 PlotPairs<-ggpairs(mtcars, lower = list(continuous = "smooth"), param = c(method  = "loess"))
 PlotPairs
@@ -93,9 +96,9 @@ p = ggplot(data.frame(mtcars), aes(x = mpg, y = resid(modelMpgAll)))
 p = p + geom_hline(yintercept = 0, size = 2); 
 p = p + geom_point(size = 5, colour = "black", alpha = 0.2)
 p = p + geom_point(size = 5, colour = "blue")
-p = p + xlab("X") + ylab("Residual")
+p = p + xlab("X") + ylab("Residual") + theme_bw()
 p
 ```
 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
